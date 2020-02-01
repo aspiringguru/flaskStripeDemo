@@ -50,6 +50,11 @@ https://stripe.com/docs/testing#cards
 visit stripe dashboard to see results.
 https://dashboard.stripe.com/test/payments
 
+"wip, added simple charge form and process charge to credit card."
+https://github.com/aspiringguru/flaskStripeDemo/tree/69c3d9827bd5c831bd77864216a2dc27fcc0ffa1
+
+
+
 
 
 ### Installing

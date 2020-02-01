@@ -23,19 +23,22 @@ def index():
 
 @app.route('/charge', methods=['POST'])
 def charge():
-    # amount in cents
-    amount = 500
-    customer = stripe.Customer.create(
-        email='sample@customer.com',
-        source=request.form['stripeToken']
-    )
-    stripe.Charge.create(
-        customer=customer.id,
-        amount=amount,
-        currency='usd',
-        description='Flask Charge'
-    )
-    return render_template('charge.html', amount=amount)
+    try:
+        # amount in cents
+        amount = 500
+        customer = stripe.Customer.create(
+            email='sample@customer.com',
+            source=request.form['stripeToken']
+        )
+        stripe.Charge.create(
+            customer=customer.id,
+            amount=amount,
+            currency='usd',
+            description='Flask Charge'
+        )
+        return render_template('charge.html', amount=amount)
+    except stripe.error.StripeError:
+        return render_template('error.html')
 
 
 if __name__ == '__main__':
