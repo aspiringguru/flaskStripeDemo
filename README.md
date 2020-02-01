@@ -39,6 +39,16 @@ export STRIPE_PUBLISHABLE_KEY=<YOUR_STRIPE_PUBLISHABLE_KEY>
 export STRIPE_SECRET_KEY=<YOUR_STRIPE_SECRET_KEY>
 
 add python code to retrieve stripe keys and create stripe object
+https://github.com/aspiringguru/flaskStripeDemo/tree/0f1d88fc16973402f3db09bb70f2018d6f31843f
+
+
+https://stripe.com/au/payments/checkout
+add templates/charge.html & @app.route('/charge', methods=['POST']) to app.py
+http://127.0.0.1:5000
+use the test card details
+https://stripe.com/docs/testing#cards
+visit stripe dashboard to see results.
+https://dashboard.stripe.com/test/payments
 
 
 
