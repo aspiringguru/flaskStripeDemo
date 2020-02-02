@@ -3,15 +3,35 @@
 {% block content %}
   <div>
     <h2>Buy for $5.00</h2>
-    <form action="/charge" method="post">
-      <script
-        src="https://checkout.stripe.com/checkout.js"
-        class="stripe-button"
-        data-key="{{ key }}"
-        data-description="A Flask Charge"
-        data-amount="500"
-        data-locale="auto">
-      </script>
-    </form>
+    <button type="button" class="btn btn-primary" id="custom-button">Pay with Card</button>
   </div>
+{% endblock %}
+
+{% block scripts %}
+  <script src="https://checkout.stripe.com/checkout.js"></script>
+  <script>
+    var handler = StripeCheckout.configure({
+      key: "{{ key }}",
+      image: 'http://127.0.0.1:5000/static/LDV_logo.png',
+      locale: "auto",
+      token: function(token) {
+        console.log(token);
+      }
+    });
+
+    document.getElementById("custom-button").addEventListener("click", function(e) {
+      // Open Checkout with further options:
+      handler.open({
+        name: "one.demo.tbxd",
+        description: "A Flask Charge for tbxd",
+        amount: 550
+      });
+      e.preventDefault();
+    });
+
+    // Close Checkout on page navigation:
+    window.addEventListener("popstate", function() {
+      handler.close();
+    });
+  </script>
 {% endblock %}
