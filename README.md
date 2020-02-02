@@ -62,26 +62,13 @@ https://github.com/aspiringguru/flaskStripeDemo/tree/d5d29ab912b8603844fe3f6dc3d
 
 https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
 
+nb error messages during stripe checkout.
+A cookie associated with a cross-site resource at http://checkout.stripe.com/ was set without the `SameSite`
+error: {type: "invalid_request", message: "Unable to perform color detection."}
 
+"wip, added customisation, post purchase feedback and retrieved data"
+https://github.com/aspiringguru/flaskStripeDemo/tree/506a2cc4ac6ffab379b8955452de9715d459e552
 
-
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
 
 
 
@@ -97,3 +84,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Acknowledgments
 
 *
+code based on this tutorial.
+https://github.com/testdrivenio/flask-stripe-checkout
