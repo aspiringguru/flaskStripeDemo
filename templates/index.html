@@ -1,9 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <div>
-    <h2>Buy for $5.00</h2>
+  <div  id="buy" class="buy">
+    <h2>Buy {{ product.name }} for ${{ "{:,.2f}".format(product.amount_in_dollars) }}</h2>
     <button type="button" class="btn btn-primary" id="custom-button">Pay with Card</button>
+  </div>
+    <br>
+  <div>
+  </div>
+  <div id="status">
+    <div class="alert alert-primary" id="alert" role="alert"></div>
+    <div class="alert alert-primary" id="email" role="alert"></div>
   </div>
 {% endblock %}
 
@@ -12,19 +19,64 @@
   <script>
     var handler = StripeCheckout.configure({
       key: "{{ key }}",
-      image: 'http://127.0.0.1:5000/static/LDV_logo.png',
+      image: '/static/LDV_logo.png',
+      //image: "https://stripe.com/img/documentation/checkout/marketplace.png",
       locale: "auto",
       token: function(token) {
-        console.log(token);
-      }
+        console.log("token:", token);
+        console.log("token['card']:", token['card']);
+        console.log("token['card']['address_city']:", token['card']['address_city']);
+        console.log("token['card']['address_country']:", token['card']['address_country']);
+        console.log("token['card']['address_line1']:", token['card']['address_line1']);
+        console.log("token['card']['address_line1_check']:", token['card']['address_line1_check']);
+        console.log("token['card']['address_line2']:", token['card']['address_line2']);
+        console.log("token['card']['address_state']:", token['card']['address_state']);
+        console.log("token['card']['address_zip']:", token['card']['address_zip']);
+        console.log("token['card']['address_zip_check']:", token['card']['address_zip_check']);
+        console.log("token['card']['name']:", token['card']['name'] );
+        fetch("/charge", {
+            method: "POST",
+            headers: { "Content-Type": "application/json", },
+            body: JSON.stringify({
+              token: token.id,
+              product: "{{ product.id }}"
+            }),
+          })
+          .then(function(response) {
+            console.log("response:", response);
+            if (response.ok) {
+              return response.json();
+            } else {
+              throw new Error('Something went wrong.');
+            }
+          })
+          .then(function(jsonResponse) {
+            // update the alert message
+            console.log(".then(function(jsonResponse)  - Thanks for purchasing")
+            document.getElementById("alert").innerText = "Thanks for purchasing {{ product.name }} at ${{ '{:,.2f}'.format(product.amount_in_dollars) }}"
+            document.getElementById("email").innerText = "email will be sent to : "+token['card']['name']
+            // show the bootstrap alert
+            document.getElementById("status").style.display = "inline";
+            document.getElementById("buy").style.display = "none";
+          })
+          .catch(function(err) {
+            console.log(".catch(function(err)  - Something went wrong")
+            // update the alert message
+            document.getElementById("alert").innerText = "Something went wrong."
+            // show the bootstrap alert
+            document.getElementById("status").style.display = "inline";
+          });
+      }//end function(token)
     });
 
     document.getElementById("custom-button").addEventListener("click", function(e) {
+      // hide the bootstrap alert
+      document.getElementById("status").style.display = "none";
       // Open Checkout with further options:
       handler.open({
-        name: "one.demo.tbxd",
-        description: "A Flask Charge for tbxd",
-        amount: 550
+        name: "{{ product.name }}",
+        description: "{{ product.description }}",
+        amount: parseInt("{{ product.amount }}")
       });
       e.preventDefault();
     });

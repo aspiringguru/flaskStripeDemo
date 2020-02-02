@@ -54,6 +54,14 @@ https://dashboard.stripe.com/test/payments
 https://github.com/aspiringguru/flaskStripeDemo/tree/69c3d9827bd5c831bd77864216a2dc27fcc0ffa1
 
 
+"wip, added error page for strip api errors."
+https://github.com/aspiringguru/flaskStripeDemo/tree/a6c93bce63e5de01d18e15a5ed961211f72cac69
+
+"wip, added styling & customize logo."
+https://github.com/aspiringguru/flaskStripeDemo/tree/d5d29ab912b8603844fe3f6dc3d0a93894faf2e6
+
+https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
+
 
 
 
