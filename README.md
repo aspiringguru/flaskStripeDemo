@@ -70,6 +70,26 @@ error: {type: "invalid_request", message: "Unable to perform color detection."}
 https://github.com/aspiringguru/flaskStripeDemo/tree/506a2cc4ac6ffab379b8955452de9715d459e552
 
 
+Add forms - test method in app_forms.py
+pip install flask-wtf
+
+pip freeze
+certifi==2019.11.28
+chardet==3.0.4
+Click==7.0
+Flask==1.1.1
+Flask-WTF==0.14.2
+idna==2.8
+itsdangerous==1.1.0
+Jinja2==2.11.1
+MarkupSafe==1.1.1
+pkg-resources==0.0.0
+requests==2.22.0
+stripe==2.42.0
+urllib3==1.25.8
+Werkzeug==0.16.1
+WTForms==2.2.1
+
 
 
 

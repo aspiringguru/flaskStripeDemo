@@ -34,7 +34,7 @@ def get_product(product_id):
         if product['id'] == product_id:
             print("def get_product returning > product = ", product)
             return product
-    print("def get_product has not match on product_id="+ product_id + " returning False")
+    print("def get_product has no match on product_id="+ product_id + " returning False")
     return False
 
 
